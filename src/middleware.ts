@@ -18,5 +18,9 @@ export const config = {
     '/api/posts/add',
     '/api/posts/remove/:path*',
     '/api/posts/update/:path*',
+    '/api/posts/sitemap',
+    '/api/reply/add',
+    '/api/reply/remove/:path*',
+    '/api/reply/update/:path*',
   ],
 };
