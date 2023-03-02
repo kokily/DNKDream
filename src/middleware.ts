@@ -13,5 +13,10 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
 }
 
 export const config = {
-  matcher: ['/write'],
+  matcher: [
+    '/write',
+    '/api/posts/add',
+    '/api/posts/remove/:path*',
+    '/api/posts/update/:path*',
+  ],
 };
