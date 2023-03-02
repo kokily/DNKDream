@@ -2,6 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import db from '@/libs/database';
 import PageTemplate from '@/components/common/PageTemplate';
+import AllPosts from '@/components/posts/AllPosts';
 
 interface Props {
   description: string[];
@@ -14,7 +15,9 @@ const IndexPage: NextPage<Props> = ({ description }) => {
         description={description ? description.toString() : undefined}
         canonical="https://dnkdream.com"
       />
-      <PageTemplate right={true}>Index Page</PageTemplate>
+      <PageTemplate right={true}>
+        <AllPosts />
+      </PageTemplate>
     </>
   );
 };
