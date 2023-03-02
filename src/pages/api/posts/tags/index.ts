@@ -7,11 +7,13 @@ export default async function listTagsHandler(
 ) {
   if (req.method === 'GET') {
     const listTags = await db.tag.findMany();
-    const tags: string[] = [];
+    const prevTags: string[] = [];
 
     listTags.map((tag) => {
-      tags.push(tag.name);
+      prevTags.push(tag.name);
     });
+
+    const tags = [...new Set(prevTags)];
 
     res.status(200).json(tags);
   } else {

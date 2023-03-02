@@ -7,15 +7,17 @@ export default async function listCategoriesHandler(
 ) {
   if (req.method === 'GET') {
     const posts = await db.post.findMany();
-    let categories: string[] = [];
+    let prevCategories: string[] = [];
 
     posts.map((post) => {
-      categories.push(post.category);
+      prevCategories.push(post.category);
     });
 
-    if (categories.length < 1) {
-      res.status(404).json({ message: '아직 포스트가 존재하지 않습니다.' });
+    if (prevCategories.length < 1) {
+      throw new Error('아직 포스트가 존재하지 않습니다.');
     }
+
+    const categories = [...new Set(prevCategories)];
 
     res.status(200).json(categories);
   } else {

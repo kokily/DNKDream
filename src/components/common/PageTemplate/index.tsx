@@ -1,6 +1,15 @@
 import type { ReactNode } from 'react';
 import Header from '../Header';
-import { Container, Contents, FullPage, LeftBox, Main } from './styles';
+import LeftSide from '../LeftSide';
+import RightSide from '../RightSide';
+import {
+  Container,
+  Contents,
+  FullPage,
+  LeftBox,
+  Main,
+  RightBox,
+} from './styles';
 
 interface Props {
   children: ReactNode;
@@ -17,13 +26,17 @@ export default function PageTemplate({ children, left, right }: Props) {
         <Contents>
           {left !== false && (
             <LeftBox>
-              <div>Left Side</div>
+              <LeftSide />
             </LeftBox>
           )}
 
           <Main>{children}</Main>
 
-          {right && <div>Right Side</div>}
+          {right && (
+            <RightBox>
+              <RightSide />
+            </RightBox>
+          )}
         </Contents>
       </Container>
     </FullPage>
