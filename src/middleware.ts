@@ -15,6 +15,7 @@ export async function middleware(req: NextRequest, event: NextFetchEvent) {
 export const config = {
   matcher: [
     '/write',
+    '/write/update/:path*',
     '/api/posts/add',
     '/api/posts/remove/:path*',
     '/api/posts/update/:path*',

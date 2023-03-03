@@ -26,6 +26,7 @@ export default function PostCard({ post, onReadPost, onTagPost }: Props) {
             alt="Thumbnail"
             width={650}
             height={360}
+            priority={true}
           />
         ) : (
           <Skeleton width={650} height={360} />

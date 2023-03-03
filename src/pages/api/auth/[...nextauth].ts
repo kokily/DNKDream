@@ -10,16 +10,16 @@ const authOptions: NextAuthOptions = {
       name: 'Credentials',
       credentials: {
         password: {
-          label: '비밀번호',
+          label: 'password',
           type: 'password',
         },
       },
       async authorize(credentials, _) {
-        if (!credentials) {
-          throw new Error('비밀번호를 확인해 주세요');
-        }
+        const password = credentials?.password;
 
-        const { password } = credentials;
+        if (!password) {
+          throw new Error('비밀번호가 입력되지 않았습니다.');
+        }
 
         const admin = await db.admin.findFirst();
 
@@ -32,7 +32,7 @@ const authOptions: NextAuthOptions = {
         if (!valid) {
           throw new Error('비밀번호가 틀렸습니다.');
         }
-
+        
         return {
           id: admin.id,
         };
