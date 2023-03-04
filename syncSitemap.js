@@ -13,7 +13,6 @@ const formatting = (target) =>
   });
 
 function makeSiteMapItem(url) {
-  f;
   return `
     <url>
       <loc>${url}</loc>
