@@ -52,7 +52,7 @@ const CategoryBox = styled.div`
   }
 `;
 
-const CategoryLink = styled.a`
+const CategoryLink = styled.div`
   padding-top: 0.2rem;
   cursor: pointer;
   color: #1c7ed6;

@@ -1,33 +1,21 @@
 import type { PostType } from 'types';
 import { useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { useInfiniteQuery } from 'react-query';
-import axios from 'axios';
-import qs from 'qs';
-import useObserver from '@/libs/hooks/useObserver';
+import { useInfiniteQuery, useQueryClient } from 'react-query';
 import useLocalStorage from 'use-local-storage';
+import { listPostsAPI } from '../AllPosts/useAllPosts';
+import useObserver from '@/libs/hooks/useObserver';
 
-export type ListPostsQuery = {
-  category?: string;
-  title?: string;
-  tag?: string;
-  cursor?: string;
-};
-
-export async function listPostsAPI(queries: ListPostsQuery) {
-  const queryString = qs.stringify(queries);
-  const response = await axios.get<PostType[]>(`/api/posts?${queryString}`);
-  return response.data;
-}
-
-export default function useAllPosts() {
+export default function useCategoriesPosts() {
   const router = useRouter();
-  const [scrollY, setScrollY] = useLocalStorage('allPostsScroll', 0);
+  const queryClient = useQueryClient();
+  const { category }: { category?: string } = router.query;
+  const [scrollY, setScrollY] = useLocalStorage('categoriesListScroll', 0);
 
   // Data Fetching
   const { data, fetchNextPage } = useInfiniteQuery(
-    'allPosts',
-    ({ pageParam }) => listPostsAPI({ cursor: pageParam }),
+    'listCategoriesPosts',
+    ({ pageParam }) => listPostsAPI({ cursor: pageParam, category }),
     {
       enabled: true,
       getNextPageParam: (data) =>
@@ -60,8 +48,17 @@ export default function useAllPosts() {
     if (scrollY !== 0) window.scrollTo(0, Number(scrollY));
   }, []);
 
+  useEffect(() => {
+    async function refreshData() {
+      await queryClient.clear();
+    }
+
+    refreshData();
+  }, [category]);
+
   return {
     posts,
+    category,
     onReadPost,
     onTagPost,
     setTarget,
