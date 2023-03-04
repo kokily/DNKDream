@@ -28,7 +28,7 @@ async function makePostSitemap() {
     let postsSitemap = '';
     let counta = 0;
 
-    const posts = await axios.get(`${API_DOMAIN}/sitemap`);
+    const posts = await axios.get(`${API_DOMAIN}/posts/sitemap`);
 
     if (!posts) {
       console.log('Posts 가 존재하지 않습니다.');
