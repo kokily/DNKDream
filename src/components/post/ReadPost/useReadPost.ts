@@ -6,7 +6,7 @@ import { useMutation, useQueries, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 import { useSession } from 'next-auth/react';
 
-async function readPostAPI(id: string) {
+export async function readPostAPI(id: string) {
   const response = await axios.get<PostType>(`/api/posts/${id}`);
   return response.data;
 }
