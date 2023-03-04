@@ -14,7 +14,7 @@ import {
 interface Props {
   children: ReactNode;
   left?: boolean;
-  right?: boolean;
+  right?: ReactNode;
 }
 
 export default function PageTemplate({ children, left, right }: Props) {
@@ -32,11 +32,7 @@ export default function PageTemplate({ children, left, right }: Props) {
 
           <Main>{children}</Main>
 
-          {right && (
-            <RightBox>
-              <RightSide />
-            </RightBox>
-          )}
+          {right && <RightBox>{right}</RightBox>}
         </Contents>
       </Container>
     </FullPage>
