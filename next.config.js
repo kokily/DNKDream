@@ -10,6 +10,10 @@ const nextConfig = {
       ssr: true,
     },
   },
+  env: {
+    NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID:
+      process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_TRACKING_ID,
+  },
 };
 
 module.exports = nextConfig;

@@ -17,7 +17,9 @@ export default function CommentsList({ comments, postId }: Props) {
       <ListBox>
         {comments &&
           comments.length > 0 &&
-          comments.map((comment) => <CommentItem comment={comment} />)}
+          comments.map((comment) => (
+            <CommentItem key={comment.id} comment={comment} />
+          ))}
       </ListBox>
     </Container>
   );
