@@ -89,8 +89,6 @@ const CardContainer = styled.div`
 `;
 
 const Thumbnail = styled.div`
-  width: 100%;
-  height: 360px;
   margin: 0;
   border: none;
   img {
@@ -98,6 +96,11 @@ const Thumbnail = styled.div`
   }
   ${media.small} {
     height: auto;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   }
 `;
 
