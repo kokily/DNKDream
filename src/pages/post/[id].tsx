@@ -34,7 +34,7 @@ const ReadPostPage: NextPage<Props> = ({ post, description }) => {
           ],
         }}
       />
-      <PageTemplate right={post && <PostToc html={post.body} />}>
+      <PageTemplate right={post && <PostToc html={post.body} />} isProgress>
         <ReadPost />
       </PageTemplate>
     </>

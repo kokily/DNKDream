@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { media, shadow } from '@/styles';
 
 const Container = styled.div`
@@ -11,11 +11,17 @@ const Container = styled.div`
   z-index: 9999;
 `;
 
-const Contents = styled.div`
+const Contents = styled.div<{ isProgress?: boolean }>`
   display: flex;
   align-items: center;
   width: 1200px;
   height: 56px;
+
+  ${(props) =>
+    props.isProgress &&
+    css`
+      height: 60px;
+    `}
   padding-left: 1rem;
   padding-right: 1rem;
   position: relative;

@@ -15,24 +15,25 @@ interface Props {
   children: ReactNode;
   left?: boolean;
   right?: ReactNode;
+  isProgress?: boolean;
 }
 
-export default function PageTemplate({ children, left, right }: Props) {
+export default function PageTemplate({ ...rest }: Props) {
   return (
     <FullPage>
-      <Header />
+      <Header isProgress={rest.isProgress} />
 
       <Container>
         <Contents>
-          {left !== false && (
+          {rest.left !== false && (
             <LeftBox>
               <LeftSide />
             </LeftBox>
           )}
 
-          <Main>{children}</Main>
+          <Main>{rest.children}</Main>
 
-          {right && <RightBox>{right}</RightBox>}
+          {rest.right && <RightBox>{rest.right}</RightBox>}
         </Contents>
       </Container>
     </FullPage>

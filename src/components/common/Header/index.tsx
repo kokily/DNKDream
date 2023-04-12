@@ -1,14 +1,20 @@
+import Progress from '../Progress';
 import MenuButton from './MenuButton';
 import MenuList from './MenuList';
 import { Container, Contents, Logo, Spacer } from './styles';
 import useHeader from './useHeader';
 
-export default function Header() {
+interface Props {
+  isProgress?: boolean;
+}
+
+export default function Header({ isProgress }: Props) {
   const headerHooks = useHeader();
 
   return (
     <Container>
-      <Contents>
+      {isProgress && <Progress />}
+      <Contents isProgress>
         <Logo onClick={headerHooks.onHome}>D&amp;K Blog</Logo>
 
         <Spacer />
