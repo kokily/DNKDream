@@ -17,7 +17,7 @@ type AddPostPayload = {
 };
 
 async function addPostAPI(payload: AddPostPayload) {
-  const response = await axios.post<PostType>(`/api/write/add`, payload);
+  const response = await axios.post<PostType>(`/api/posts/add`, payload);
   return response.data;
 }
 
@@ -27,7 +27,7 @@ type UpdatePostPayload = {
 
 async function updatePostAPI(payload: UpdatePostPayload) {
   const { id, category, title, body, tags, thumbnail } = payload;
-  const response = await axios.put<PostType>(`/api/write/update/${id}`, {
+  const response = await axios.put<PostType>(`/api/posts/update/${id}`, {
     category,
     title,
     body,
